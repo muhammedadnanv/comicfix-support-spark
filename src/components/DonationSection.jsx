@@ -16,13 +16,13 @@ const DonationSection = () => {
         <h2 className="text-3xl font-bold mb-8 text-center text-golden">Make a Difference Today</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <Button onClick={() => handleDonate(500)} className="w-full bg-golden hover:bg-yellow-400 text-black">
-              Donate ₹500
+            <Button onClick={() => handleDonate(10)} className="w-full bg-golden hover:bg-yellow-400 text-black">
+              Donate ₹10
             </Button>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
-            <Button onClick={() => handleDonate(1000)} className="w-full bg-golden hover:bg-yellow-400 text-black">
-              Donate ₹1000
+            <Button onClick={() => handleDonate(10000000)} className="w-full bg-golden hover:bg-yellow-400 text-black">
+              Donate ₹10,000,000
             </Button>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}>
