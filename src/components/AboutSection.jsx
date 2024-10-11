@@ -19,18 +19,18 @@ const AboutSection = () => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        ComicFix offers live projects for freshers and self-taught developers, helping them gain real-world experience and earn certificates, giving them a competitive edge in the tech industry.
+        We offer live projects for freshers and self-taught developers to contribute to and earn certificates, giving them a competitive edge in the tech industry.
       </motion.p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {['Real-world Experience', 'Earn Certificates', 'Competitive Edge'].map((benefit, index) => (
           <motion.div 
             key={index}
-            className="flex items-center premium-card"
+            className="flex items-center bg-blue-50 p-4 rounded-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 + index * 0.2 }}
           >
-            <CheckCircle className="text-accent-color mr-4 premium-icon" />
+            <CheckCircle className="text-green-500 mr-4" />
             <span className="font-semibold">{benefit}</span>
           </motion.div>
         ))}
