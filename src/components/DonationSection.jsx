@@ -10,23 +10,37 @@ const DonationSection = () => {
     window.location.href = upiLink;
   };
 
+  const donationAmounts = [10, 20, 50, 100, 500, 1000, 5000, 10000, 100000, 1000000, 10000000];
+
   return (
     <section className="py-16 px-4 md:px-8 bg-black">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold mb-8 text-center text-golden">Make a Difference Today</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <Button onClick={() => handleDonate(10)} className="w-full bg-golden hover:bg-yellow-400 text-black">
-              Donate ₹10
-            </Button>
-          </motion.div>
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
-            <Button onClick={() => handleDonate(10000000)} className="w-full bg-golden hover:bg-yellow-400 text-black">
-              Donate ₹10,000,000
-            </Button>
-          </motion.div>
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}>
-            <Button onClick={() => handleDonate()} className="w-full bg-golden hover:bg-yellow-400 text-black">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+          {donationAmounts.map((amount, index) => (
+            <motion.div 
+              key={amount}
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <Button 
+                onClick={() => handleDonate(amount)} 
+                className="w-full bg-golden hover:bg-yellow-400 text-black"
+              >
+                Donate ₹{amount.toLocaleString()}
+              </Button>
+            </motion.div>
+          ))}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.6, delay: donationAmounts.length * 0.1 }}
+          >
+            <Button 
+              onClick={() => handleDonate()} 
+              className="w-full bg-golden hover:bg-yellow-400 text-black"
+            >
               Custom Amount
             </Button>
           </motion.div>
@@ -35,7 +49,7 @@ const DonationSection = () => {
           className="text-center text-golden"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: (donationAmounts.length + 1) * 0.1 }}
         >
           Your contribution directly supports our mission to empower developers through live projects and certifications.
         </motion.p>
