@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 
 const HeroSection = () => (
-  <section className="bg-blue-600 text-white py-20 px-4 md:px-8">
+  <section className="bg-black text-golden py-20 px-4 md:px-8">
     <div className="max-w-6xl mx-auto text-center">
       <motion.h1 
         className="text-4xl md:text-6xl font-bold mb-6"
@@ -26,7 +26,7 @@ const HeroSection = () => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
       >
-        <Button className="bg-white text-blue-600 hover:bg-blue-100 text-lg px-8 py-3 rounded-full">
+        <Button className="bg-golden text-black hover:bg-yellow-400 text-lg px-8 py-3 rounded-full">
           Donate Now
         </Button>
       </motion.div>
