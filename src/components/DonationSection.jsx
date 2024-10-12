@@ -11,9 +11,12 @@ const DonationSection = () => {
 
 
   const handleDonate = (amount) => {
-    // Implement UPI payment logic here
-    console.log(`Donating ₹${amount}`);
-    // You can integrate with a UPI payment gateway here
+    // UPI payment logic
+    const upiId = "comicfix@upi"; // Replace with your actual UPI ID
+    const paymentUrl = `upi://pay?pa=${upiId}&pn=ComicFix%20India&am=${amount}&cu=INR&tn=Donation%20to%20ComicFix%20India`;
+    
+    // Open the UPI payment URL
+    window.location.href = paymentUrl;
   };
 
   return (
