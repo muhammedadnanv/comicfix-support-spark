@@ -40,7 +40,7 @@ const DonationSection = () => {
     <section className="py-16 px-4 md:px-8 bg-black text-white">
       <div className="max-w-4xl mx-auto">
         <motion.h2 
-          className="text-3xl font-bold mb-8 text-center"
+          className="text-3xl font-bold mb-8 text-center text-golden"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -62,17 +62,17 @@ const DonationSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <h3 className="text-2xl font-semibold mb-4">Why Should You Donate?</h3>
+          <h3 className="text-2xl font-semibold mb-4 text-golden">Why Should You Donate?</h3>
           <ul className="list-disc pl-6 space-y-2">
-            <li><strong>Make a Difference:</strong> Your donation directly impacts the lives of aspiring developers by providing them with real-world experiences and certifications that they might not otherwise have access to.</li>
-            <li><strong>Contribute to the Tech Industry's Future:</strong> By donating, you're helping to cultivate a new generation of skilled developers who will drive innovation and growth in the tech industry.</li>
-            <li><strong>Support Equal Opportunity:</strong> You're promoting equal access to education and career opportunities, helping to create a more diverse and inclusive industry.</li>
+            <li><strong className="text-golden">Make a Difference:</strong> Your donation directly impacts the lives of aspiring developers by providing them with real-world experiences and certifications that they might not otherwise have access to.</li>
+            <li><strong className="text-golden">Contribute to the Tech Industry's Future:</strong> By donating, you're helping to cultivate a new generation of skilled developers who will drive innovation and growth in the tech industry.</li>
+            <li><strong className="text-golden">Support Equal Opportunity:</strong> You're promoting equal access to education and career opportunities, helping to create a more diverse and inclusive industry.</li>
           </ul>
           <p className="mt-4">In short, your donation to ComicFix is more than just a financial contribution; it's an investment in the future of tech and social progress.</p>
         </motion.div>
 
         {!showForm ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-8">
             {donationOptions.map((amount, index) => (
               <motion.div 
                 key={amount}
@@ -81,7 +81,7 @@ const DonationSection = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Button 
-                  className="w-full bg-white text-black hover:bg-gray-200"
+                  className="w-full bg-golden text-black hover:bg-yellow-600"
                   onClick={() => handleAmountSelect(amount)}
                 >
                   ₹{amount.toLocaleString('en-IN')}
@@ -104,7 +104,7 @@ const DonationSection = () => {
               value={donorInfo.name}
               onChange={handleInputChange}
               required
-              className="w-full p-2 border border-gray-300 rounded bg-gray-800 text-white"
+              className="w-full p-2 border border-golden rounded bg-gray-800 text-white"
             />
             <Input
               type="tel"
@@ -113,7 +113,7 @@ const DonationSection = () => {
               value={donorInfo.phone}
               onChange={handleInputChange}
               required
-              className="w-full p-2 border border-gray-300 rounded bg-gray-800 text-white"
+              className="w-full p-2 border border-golden rounded bg-gray-800 text-white"
             />
             <Textarea
               name="reason"
@@ -121,18 +121,18 @@ const DonationSection = () => {
               value={donorInfo.reason}
               onChange={handleInputChange}
               required
-              className="w-full p-2 border border-gray-300 rounded bg-gray-800 text-white"
+              className="w-full p-2 border border-golden rounded bg-gray-800 text-white"
             />
             <Button 
               type="submit"
-              className="w-full bg-white text-black hover:bg-gray-200"
+              className="w-full bg-golden text-black hover:bg-yellow-600"
             >
               Contribute ₹{selectedAmount.toLocaleString('en-IN')}
             </Button>
           </motion.form>
         )}
         <motion.p 
-          className="text-center text-lg mt-8"
+          className="text-center text-lg mt-8 text-golden"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
