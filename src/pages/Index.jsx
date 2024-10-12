@@ -14,7 +14,7 @@ const Index = () => {
       <DonationSection />
       <DeveloperSponsorshipProgram />
       <MentorshipProgram />
-      <div className="flex flex-col items-center my-8 bg-black text-white p-6 rounded-lg">
+      <div className="flex flex-col items-center my-8 bg-black text-white p-6 rounded-lg mx-4">
         <p className="text-center mb-4">
           Our Code of Conduct ensures a respectful and inclusive environment for all contributors.
         </p>

@@ -6,7 +6,7 @@ const HeroSection = () => (
   <section className="bg-black text-golden py-10 md:py-20 px-4 md:px-8">
     <div className="max-w-6xl mx-auto text-center">
       <motion.h1 
-        className="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6"
+        className="text-2xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -14,7 +14,7 @@ const HeroSection = () => (
         Support the Future of Web Development
       </motion.h1>
       <motion.p 
-        className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8"
+        className="text-base md:text-lg lg:text-2xl mb-6 md:mb-8"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
