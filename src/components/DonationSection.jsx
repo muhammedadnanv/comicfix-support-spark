@@ -1,13 +1,17 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from "@/components/ui/button";
+import DonationForm from './DonationForm';
 
 const DonationSection = () => {
+  const [showForm, setShowForm] = useState(false);
+
   const handleDonate = (amount) => {
     const upiLink = amount
       ? `upi://pay?pa=adnanmuhammad4393@okicici&pn=Adnan%20Muhammad&am=${amount}.00&cu=INR&tn=Supporting ComicFix Community`
       : `upi://pay?pa=adnanmuhammad4393@okicici&pn=Adnan%20Muhammad&cu=INR&tn=Supporting ComicFix Community`;
     window.location.href = upiLink;
+    setShowForm(true);
   };
 
   const donationAmounts = [10, 20, 50, 100, 500, 1000, 5000, 10000, 100000, 1000000, 10000000];
@@ -54,6 +58,9 @@ const DonationSection = () => {
           Your contribution directly supports our mission to empower developers through live projects and certifications.
         </motion.p>
       </div>
+      <AnimatePresence>
+        {showForm && <DonationForm onClose={() => setShowForm(false)} />}
+      </AnimatePresence>
     </section>
   );
 };
