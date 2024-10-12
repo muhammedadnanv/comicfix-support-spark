@@ -4,6 +4,8 @@ import { Progress } from "@/components/ui/progress";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { toast } from "sonner";
 import Badge from './Badge';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const GamificationSystem = () => {
   const [contributors, setContributors] = useState([]);
@@ -15,6 +17,7 @@ const GamificationSystem = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [badges, setBadges] = useState([]);
+  const [whatsappNumber, setWhatsappNumber] = useState('');
 
   const organizationMembers = [
     { name: "Abhinandhks", username: "abhinandhks123", role: "Member" },
@@ -67,6 +70,17 @@ const GamificationSystem = () => {
 
     fetchData();
   }, []);
+
+  const handleWhatsAppIntegration = () => {
+    if (whatsappNumber) {
+      // Here you would typically integrate with a WhatsApp API
+      toast.success(`WhatsApp integration set up for ${whatsappNumber}`);
+      // Reset the input field
+      setWhatsappNumber('');
+    } else {
+      toast.error('Please enter a valid WhatsApp number');
+    }
+  };
 
   if (loading) {
     return <div className="p-4">Loading gamification data...</div>;
@@ -125,10 +139,31 @@ const GamificationSystem = () => {
         </motion.div>
 
         <motion.div
-          className="bg-gray-900 p-6 rounded-lg"
+          className="mb-8 bg-gray-900 p-6 rounded-lg"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          <h3 className="text-xl font-semibold mb-4 text-golden">WhatsApp Integration</h3>
+          <div className="flex space-x-2">
+            <Input
+              type="text"
+              placeholder="Enter WhatsApp number"
+              value={whatsappNumber}
+              onChange={(e) => setWhatsappNumber(e.target.value)}
+              className="bg-black text-golden border-golden"
+            />
+            <Button onClick={handleWhatsAppIntegration} className="bg-golden text-black hover:bg-yellow-600">
+              Connect WhatsApp
+            </Button>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="bg-gray-900 p-6 rounded-lg"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1 }}
         >
           <h3 className="text-xl font-semibold mb-4 text-golden">Top Contributors</h3>
           <Table>
