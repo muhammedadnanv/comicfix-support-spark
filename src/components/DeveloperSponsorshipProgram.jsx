@@ -11,18 +11,25 @@ import {
 } from "@/components/ui/select";
 
 const DeveloperSponsorshipProgram = () => {
-  const [selectedDeveloper, setSelectedDeveloper] = useState('');
+  const [selectedProject, setSelectedProject] = useState('');
   const [sponsorshipAmount, setSponsorshipAmount] = useState('');
 
-  const developers = [
-    { id: 1, name: 'Alice Johnson', project: 'E-commerce Platform' },
-    { id: 2, name: 'Bob Smith', project: 'Task Management App' },
-    { id: 3, name: 'Charlie Brown', project: 'Social Media Dashboard' },
+  const projects = [
+    "ComicFix-com/Corn.ai",
+    "ComicFix-com/AI-tools-for-you",
+    "ComicFix-com/FinSage",
+    "ComicFix-com/UniW",
+    "ComicFix-com/ZoXach",
+    "ComicFix-com/Widgets",
+    "ComicFix-com/DevVortex-Premium",
+    "ComicFix-com/Neighborhoodlively",
+    "ComicFix-com/tonx",
+    "ComicFix-com/mathrangers"
   ];
 
   const handleSponsor = () => {
     // TODO: Implement sponsorship logic
-    console.log(`Sponsoring ${selectedDeveloper} with $${sponsorshipAmount}`);
+    console.log(`Sponsoring ${selectedProject} with $${sponsorshipAmount}`);
     // Here you would typically send this data to your backend
   };
 
@@ -35,7 +42,7 @@ const DeveloperSponsorshipProgram = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          Developer Sponsorship Program
+          Project Sponsorship Program
         </motion.h2>
         <motion.p 
           className="text-center mb-8 text-gray-600"
@@ -43,7 +50,7 @@ const DeveloperSponsorshipProgram = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          Support a specific developer or project and receive personalized updates on their progress.
+          Support a specific project from ComicFix and receive personalized updates on its progress.
         </motion.p>
         <motion.div 
           className="space-y-4"
@@ -51,14 +58,14 @@ const DeveloperSponsorshipProgram = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <Select onValueChange={setSelectedDeveloper}>
+          <Select onValueChange={setSelectedProject}>
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select a developer to sponsor" />
+              <SelectValue placeholder="Select a project to sponsor" />
             </SelectTrigger>
             <SelectContent>
-              {developers.map((dev) => (
-                <SelectItem key={dev.id} value={dev.name}>
-                  {dev.name} - {dev.project}
+              {projects.map((project) => (
+                <SelectItem key={project} value={project}>
+                  {project}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -73,7 +80,7 @@ const DeveloperSponsorshipProgram = () => {
             onClick={handleSponsor}
             className="w-full bg-golden text-black hover:bg-yellow-400"
           >
-            Sponsor Developer
+            Sponsor Project
           </Button>
         </motion.div>
       </div>
