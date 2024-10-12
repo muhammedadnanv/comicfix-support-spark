@@ -2,6 +2,7 @@ import React from 'react';
 import HeroSection from '../components/HeroSection';
 import DonationSection from '../components/DonationSection';
 import DeveloperSponsorshipProgram from '../components/DeveloperSponsorshipProgram';
+import MentorshipProgram from '../components/MentorshipProgram';
 import Footer from '../components/Footer';
 import '../styles/premium.css';
 
@@ -11,6 +12,7 @@ const Index = () => {
       <HeroSection />
       <DonationSection />
       <DeveloperSponsorshipProgram />
+      <MentorshipProgram />
       <Footer />
     </div>
   );
