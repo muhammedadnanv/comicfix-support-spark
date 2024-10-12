@@ -43,6 +43,17 @@ const DonationForm = ({ selectedAmount, donorInfo, paymentMethod, onInputChange,
           <SelectItem value="bank">Bank Transfer (IFSC)</SelectItem>
         </SelectContent>
       </Select>
+      {paymentMethod === 'upi' && (
+        <Input
+          type="text"
+          name="upiId"
+          placeholder="Enter your UPI ID"
+          value={donorInfo.upiId}
+          onChange={onInputChange}
+          required
+          className="w-full p-2 border border-golden rounded bg-gray-800 text-white"
+        />
+      )}
       {paymentMethod === 'debit' && (
         <>
           <Input
