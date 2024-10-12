@@ -33,10 +33,8 @@ const DonationSection = () => {
     e.preventDefault();
     // UPI payment logic
     const upiId = "comicfix@upi"; // Replace with your actual UPI ID
-    const paymentUrl = `upi://pay?pa=${upiId}&pn=ComicFix%20India&am=${selectedAmount}&cu=INR&tn=Donation%20to%20ComicFix%20India`;
+    const paymentUrl = `upi://pay?pa=${upiId}&pn=ComicFix%20India&am=${selectedAmount}&cu=INR&tn=Donation%20to%20ComicFix%20India&tr=${encodeURIComponent(JSON.stringify(donorInfo))}`;
     
-    // You might want to save donorInfo to your backend here before redirecting
-
     // Open the UPI payment URL
     window.location.href = paymentUrl;
   };
