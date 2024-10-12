@@ -3,14 +3,22 @@ import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const DonationSection = () => {
   const [selectedAmount, setSelectedAmount] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState('upi');
   const [donorInfo, setDonorInfo] = useState({
     name: '',
     phone: '',
-    reason: ''
+    reason: '',
+    cardNumber: '',
+    expiryDate: '',
+    cvv: '',
+    bankName: '',
+    accountNumber: '',
+    ifscCode: ''
   });
 
   const donationOptions = [
@@ -31,9 +39,10 @@ const DonationSection = () => {
 
   const handleDonate = (e) => {
     e.preventDefault();
-    const upiId = "comicfix@upi"; // Replace with your actual UPI ID
-    const paymentUrl = `upi://pay?pa=${upiId}&pn=ComicFix&am=${selectedAmount}&cu=INR&tn=Donation%20to%20ComicFix&tr=${encodeURIComponent(JSON.stringify(donorInfo))}`;
-    window.location.href = paymentUrl;
+    // Implement payment processing logic here based on the selected payment method
+    console.log('Processing donation:', { amount: selectedAmount, method: paymentMethod, ...donorInfo });
+    // For demonstration purposes, we'll just log the data
+    alert('Thank you for your donation! (This is a demo - no actual payment was processed)');
   };
 
   return (
@@ -123,6 +132,80 @@ const DonationSection = () => {
               required
               className="w-full p-2 border border-golden rounded bg-gray-800 text-white"
             />
+            <Select onValueChange={(value) => setPaymentMethod(value)}>
+              <SelectTrigger className="w-full bg-gray-800 text-white border-golden">
+                <SelectValue placeholder="Select payment method" />
+              </SelectTrigger>
+              <SelectContent className="bg-gray-800 text-white">
+                <SelectItem value="upi">UPI</SelectItem>
+                <SelectItem value="debit">Debit Card</SelectItem>
+                <SelectItem value="bank">Bank Transfer (IFSC)</SelectItem>
+              </SelectContent>
+            </Select>
+            {paymentMethod === 'debit' && (
+              <>
+                <Input
+                  type="text"
+                  name="cardNumber"
+                  placeholder="Card Number"
+                  value={donorInfo.cardNumber}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full p-2 border border-golden rounded bg-gray-800 text-white"
+                />
+                <div className="flex space-x-2">
+                  <Input
+                    type="text"
+                    name="expiryDate"
+                    placeholder="MM/YY"
+                    value={donorInfo.expiryDate}
+                    onChange={handleInputChange}
+                    required
+                    className="w-1/2 p-2 border border-golden rounded bg-gray-800 text-white"
+                  />
+                  <Input
+                    type="text"
+                    name="cvv"
+                    placeholder="CVV"
+                    value={donorInfo.cvv}
+                    onChange={handleInputChange}
+                    required
+                    className="w-1/2 p-2 border border-golden rounded bg-gray-800 text-white"
+                  />
+                </div>
+              </>
+            )}
+            {paymentMethod === 'bank' && (
+              <>
+                <Input
+                  type="text"
+                  name="bankName"
+                  placeholder="Bank Name"
+                  value={donorInfo.bankName}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full p-2 border border-golden rounded bg-gray-800 text-white"
+                />
+                <Input
+                  type="text"
+                  name="accountNumber"
+                  placeholder="Account Number"
+                  value={donorInfo.accountNumber}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full p-2 border border-golden rounded bg-gray-800 text-white"
+                />
+                <Input
+                  type="text"
+                  name="ifscCode"
+                  placeholder="IFSC Code"
+                  value={donorInfo.ifscCode}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full p-2 border border-golden rounded bg-gray-800 text-white"
+                />
+              </>
+            )}
             <Button 
               type="submit"
               className="w-full bg-golden text-black hover:bg-yellow-600"
