@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "sonner";
+import Badge from './Badge';
 
 const GamificationSystem = () => {
   const [contributors, setContributors] = useState([]);
@@ -15,12 +14,7 @@ const GamificationSystem = () => {
   const [reputation, setReputation] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const badges = [
-    { name: "First Contribution", icon: "🌟" },
-    { name: "Project Master", icon: "🏆" },
-    { name: "Mentor Extraordinaire", icon: "🎓" },
-  ];
+  const [badges, setBadges] = useState([]);
 
   const organizationMembers = [
     { name: "Abhinandhks", username: "abhinandhks123", role: "Member" },
@@ -52,8 +46,16 @@ const GamificationSystem = () => {
           role: member.role
         }));
 
+        // Simulate fetching badges
+        const fetchedBadges = [
+          { name: "First Contribution", icon: "🌟" },
+          { name: "Project Master", icon: "🏆" },
+          { name: "Mentor Extraordinaire", icon: "🎓" },
+        ];
+
         setContributors(contributorsData);
         setReputation(75); // Simulated reputation score
+        setBadges(fetchedBadges);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -106,9 +108,7 @@ const GamificationSystem = () => {
           <h3 className="text-xl font-semibold mb-4 text-golden">Badges Earned</h3>
           <div className="flex flex-wrap gap-4">
             {badges.map((badge, index) => (
-              <Badge key={index} variant="outline" className="text-lg p-2 text-golden border-golden">
-                {badge.icon} {badge.name}
-              </Badge>
+              <Badge key={index} icon={badge.icon} name={badge.name} />
             ))}
           </div>
         </motion.div>
