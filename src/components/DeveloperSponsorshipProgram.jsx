@@ -34,10 +34,10 @@ const DeveloperSponsorshipProgram = () => {
   };
 
   return (
-    <section className="py-10 md:py-16 px-4 md:px-8 bg-gray-50">
+    <section className="py-10 md:py-16 px-4 md:px-8 bg-black text-golden">
       <div className="max-w-4xl mx-auto">
         <motion.h2 
-          className="text-2xl md:text-3xl font-bold mb-6 text-center"
+          className="text-2xl md:text-3xl font-bold mb-6 text-center text-golden"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -45,7 +45,7 @@ const DeveloperSponsorshipProgram = () => {
           Project Sponsorship Program
         </motion.h2>
         <motion.p 
-          className="text-center mb-8 text-gray-600"
+          className="text-center mb-8 text-golden"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -59,12 +59,12 @@ const DeveloperSponsorshipProgram = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <Select onValueChange={setSelectedProject}>
-            <SelectTrigger className="w-full">
+            <SelectTrigger className="w-full bg-black text-golden border-golden">
               <SelectValue placeholder="Select a project to sponsor" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-black text-golden border-golden">
               {projects.map((project) => (
-                <SelectItem key={project} value={project}>
+                <SelectItem key={project} value={project} className="hover:bg-golden hover:text-black">
                   {project}
                 </SelectItem>
               ))}
@@ -75,6 +75,7 @@ const DeveloperSponsorshipProgram = () => {
             placeholder="Sponsorship amount ($)"
             value={sponsorshipAmount}
             onChange={(e) => setSponsorshipAmount(e.target.value)}
+            className="bg-black text-golden border-golden placeholder-golden"
           />
           <Button 
             onClick={handleSponsor}
