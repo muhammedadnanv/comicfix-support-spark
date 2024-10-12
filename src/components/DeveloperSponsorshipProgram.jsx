@@ -40,7 +40,7 @@ const DeveloperSponsorshipProgram = () => {
       return;
     }
 
-    const upiLink = `upi://pay?pa=adnanmuhammad4393@okicici&pn=Adnan%20Muhammad&am=${amount.toFixed(2)}&cu=INR&tn=Supporting ComicFix Community - ${selectedProject}`;
+    const upiLink = `upi://pay?pa=adnanmuhammad4393@okicici&pn=Adnan%20Muhammad&am=${amount.toFixed(2)}&cu=INR&tn=${selectedProject}`;
     window.location.href = upiLink;
   };
 
