@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import axios from 'axios';
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 const GamificationSystem = () => {
+  const [contributors, setContributors] = useState([]);
   const userLevel = "Pro Developer";
   const userPoints = 7500;
   const nextLevel = "Code Master";
@@ -16,11 +18,24 @@ const GamificationSystem = () => {
     { name: "Mentor Extraordinaire", icon: "🎓" },
   ];
 
-  const leaderboard = [
-    { rank: 1, name: "Alice Dev", points: 12000 },
-    { rank: 2, name: "Bob Coder", points: 11500 },
-    { rank: 3, name: "Charlie Programmer", points: 11000 },
-  ];
+  useEffect(() => {
+    const fetchContributors = async () => {
+      try {
+        const response = await axios.get('https://api.github.com/orgs/ComicFix-com/members');
+        const contributorsData = response.data.map((contributor, index) => ({
+          rank: index + 1,
+          name: contributor.login,
+          points: Math.floor(Math.random() * 10000) + 1000, // Random points for demonstration
+          avatar: contributor.avatar_url,
+        }));
+        setContributors(contributorsData);
+      } catch (error) {
+        console.error('Error fetching contributors:', error);
+      }
+    };
+
+    fetchContributors();
+  }, []);
 
   return (
     <section className="py-16 px-4 md:px-8 bg-black text-white">
@@ -71,16 +86,21 @@ const GamificationSystem = () => {
             <TableHeader>
               <TableRow>
                 <TableHead className="w-[100px]">Rank</TableHead>
-                <TableHead>Name</TableHead>
+                <TableHead>Contributor</TableHead>
                 <TableHead className="text-right">Points</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {leaderboard.map((entry) => (
-                <TableRow key={entry.rank}>
-                  <TableCell className="font-medium">{entry.rank}</TableCell>
-                  <TableCell>{entry.name}</TableCell>
-                  <TableCell className="text-right">{entry.points}</TableCell>
+              {contributors.map((contributor) => (
+                <TableRow key={contributor.rank}>
+                  <TableCell className="font-medium">{contributor.rank}</TableCell>
+                  <TableCell>
+                    <div className="flex items-center">
+                      <img src={contributor.avatar} alt={contributor.name} className="w-8 h-8 rounded-full mr-2" />
+                      {contributor.name}
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-right">{contributor.points}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
