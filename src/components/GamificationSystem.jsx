@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import axios from 'axios';
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -23,24 +22,38 @@ const GamificationSystem = () => {
     { name: "Mentor Extraordinaire", icon: "🎓" },
   ];
 
+  const organizationMembers = [
+    { name: "Abhinandhks", username: "abhinandhks123", role: "Member" },
+    { name: "Muhammed ALi", username: "adilali097", role: "Owner" },
+    { name: "S Aditya", username: "aditya5885", role: "Member" },
+    { name: "Delin.dev", username: "DELINSHABU", role: "Member" },
+    { name: "Muhammed Faahad", username: "fahadmuhammed123", role: "Member" },
+    { name: "Muhammed Adnan", username: "muhammedadnanv", role: "Member" },
+    { name: "Rijo Sebastian", username: "RijoKsd", role: "Member" },
+    { name: "Riswan.P.R", username: "RiswanPR", role: "Member" },
+    { name: "Rithas", username: "rithasahmed12", role: "Member" },
+    { name: "RIYAN SAFFEEKH K M", username: "riyan-hx", role: "Member" },
+    { name: "Ajinvr", username: "Ajinvr", role: "Owner" }
+  ];
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const [contributorsResponse, reputationResponse] = await Promise.all([
-          axios.get('https://api.github.com/orgs/ComicFix-com/members'),
-          new Promise(resolve => setTimeout(() => resolve({ data: { reputation: 75 } }), 1000))
-        ]);
+        // Simulate API call delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
-        const contributorsData = contributorsResponse.data.map((contributor, index) => ({
+        const contributorsData = organizationMembers.map((member, index) => ({
           rank: index + 1,
-          name: contributor.login,
+          name: member.name,
+          username: member.username,
           points: Math.floor(Math.random() * 10000) + 1000,
-          avatar: contributor.avatar_url,
+          avatar: `https://github.com/${member.username}.png`,
+          role: member.role
         }));
 
         setContributors(contributorsData);
-        setReputation(reputationResponse.data.reputation);
+        setReputation(75); // Simulated reputation score
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -124,6 +137,7 @@ const GamificationSystem = () => {
                 <TableHead className="w-[100px] text-golden">Rank</TableHead>
                 <TableHead className="text-golden">Contributor</TableHead>
                 <TableHead className="text-right text-golden">Points</TableHead>
+                <TableHead className="text-right text-golden">Role</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -137,6 +151,7 @@ const GamificationSystem = () => {
                     </div>
                   </TableCell>
                   <TableCell className="text-right text-golden">{contributor.points}</TableCell>
+                  <TableCell className="text-right text-golden">{contributor.role}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
