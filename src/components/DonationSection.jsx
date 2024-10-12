@@ -3,7 +3,12 @@ import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 
 const DonationSection = () => {
-  const donationOptions = [500, 1000, 2000, 5000, 10000, 25000];
+   const donationOptions = [
+    10, 20, 30, 40, 50, 60, 70, 80, 90, 100,
+    200, 300, 400, 500, 600, 700, 800, 900, 1000,
+    1500, 2000
+];
+
 
   const handleDonate = (amount) => {
     // Implement UPI payment logic here
