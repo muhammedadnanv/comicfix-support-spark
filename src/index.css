@@ -5,28 +5,28 @@
 @layer base {
   :root {
     --background: 0 0% 0%;
-    --foreground: 45 100% 50%;
+    --foreground: 0 0% 100%;
 
-    --card: 0 0% 0%;
-    --card-foreground: 45 100% 50%;
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 100%;
  
-    --popover: 0 0% 0%;
-    --popover-foreground: 45 100% 50%;
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 100%;
  
     --primary: 45 100% 50%;
     --primary-foreground: 0 0% 0%;
  
     --secondary: 45 100% 25%;
-    --secondary-foreground: 0 0% 0%;
+    --secondary-foreground: 0 0% 100%;
  
-    --muted: 45 100% 10%;
-    --muted-foreground: 45 100% 40%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
  
     --accent: 45 100% 25%;
-    --accent-foreground: 0 0% 0%;
+    --accent-foreground: 0 0% 100%;
  
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 45 100% 50%;
+    --destructive-foreground: 0 0% 100%;
 
     --border: 45 100% 25%;
     --input: 45 100% 25%;
@@ -43,4 +43,20 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.golden-text {
+  @apply text-[#FFD700];
+}
+
+.premium-button {
+  @apply bg-[#FFD700] text-black hover:bg-yellow-600 transition-colors duration-300;
+}
+
+.premium-card {
+  @apply bg-gray-900 border border-[#FFD700] rounded-lg shadow-lg;
+}
+
+.premium-icon {
+  @apply text-[#FFD700];
 }
