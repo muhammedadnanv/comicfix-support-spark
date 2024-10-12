@@ -9,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { toast } from "sonner";
 
 const DeveloperSponsorshipProgram = () => {
   const [selectedProject, setSelectedProject] = useState('');
@@ -28,9 +29,19 @@ const DeveloperSponsorshipProgram = () => {
   ];
 
   const handleSponsor = () => {
-    // TODO: Implement sponsorship logic
-    console.log(`Sponsoring ${selectedProject} with $${sponsorshipAmount}`);
-    // Here you would typically send this data to your backend
+    if (!selectedProject || !sponsorshipAmount) {
+      toast.error("Please select a project and enter a sponsorship amount.");
+      return;
+    }
+
+    const amount = parseFloat(sponsorshipAmount);
+    if (isNaN(amount) || amount <= 0) {
+      toast.error("Please enter a valid sponsorship amount.");
+      return;
+    }
+
+    const upiLink = `upi://pay?pa=adnanmuhammad4393@okicici&pn=Adnan%20Muhammad&am=${amount.toFixed(2)}&cu=INR&tn=Supporting ComicFix Community - ${selectedProject}`;
+    window.location.href = upiLink;
   };
 
   return (
@@ -72,7 +83,7 @@ const DeveloperSponsorshipProgram = () => {
           </Select>
           <Input
             type="number"
-            placeholder="Sponsorship amount ($)"
+            placeholder="Sponsorship amount (₹)"
             value={sponsorshipAmount}
             onChange={(e) => setSponsorshipAmount(e.target.value)}
             className="bg-black text-golden border-golden placeholder-golden"
