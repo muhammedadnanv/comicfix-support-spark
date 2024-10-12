@@ -3,10 +3,16 @@ import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 
 const DonationSection = () => {
-  const donationOptions = [10, 25, 50, 100, 250, 500];
+  const donationOptions = [500, 1000, 2000, 5000, 10000, 25000];
+
+  const handleDonate = (amount) => {
+    // Implement UPI payment logic here
+    console.log(`Donating ₹${amount}`);
+    // You can integrate with a UPI payment gateway here
+  };
 
   return (
-    <section className="py-16 px-4 md:px-8 bg-gray-900 text-golden">
+    <section className="py-16 px-4 md:px-8 bg-orange-50 text-orange-800">
       <div className="max-w-4xl mx-auto">
         <motion.h2 
           className="text-3xl font-bold mb-8 text-center"
@@ -14,7 +20,7 @@ const DonationSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          Make a Difference Today
+          Make a Difference Today in India
         </motion.h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
           {donationOptions.map((amount, index) => (
@@ -25,13 +31,10 @@ const DonationSection = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
               <Button 
-                className="w-full bg-golden text-black hover:bg-yellow-400"
-                onClick={() => {
-                  // Implement donation logic here
-                  console.log(`Donating $${amount}`);
-                }}
+                className="w-full bg-orange-500 text-white hover:bg-orange-600"
+                onClick={() => handleDonate(amount)}
               >
-                ${amount}
+                ₹{amount.toLocaleString('en-IN')}
               </Button>
             </motion.div>
           ))}
@@ -42,7 +45,7 @@ const DonationSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          Your contribution directly supports our mission to empower developers through live projects and certifications.
+          Your contribution directly supports our mission to empower developers through live projects and certifications in India.
         </motion.p>
       </div>
     </section>
