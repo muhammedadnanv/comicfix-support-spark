@@ -92,6 +92,19 @@ const DonationSection = () => {
           </ul>
         </motion.div>
 
+        <motion.div
+          className="bg-gray-900 p-6 rounded-lg shadow-md mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
+          <h3 className="text-2xl font-semibold mb-4 text-golden">Fostering Career Development</h3>
+          <ul className="list-disc pl-6 space-y-2">
+            <li><strong className="text-golden">Supporting Skills Development:</strong> Your donation allows participants to build essential technical and professional skills, enhancing their career prospects. This can lead to better job opportunities and long-term economic benefits for individuals and their families.</li>
+            <li><strong className="text-golden">Encouraging Self-Sufficiency:</strong> With the skills they gain through ComicFix projects, participants can become self-sufficient, finding employment, launching startups, or even becoming contributors to future tech communities.</li>
+          </ul>
+        </motion.div>
+
         {!showForm ? (
           <DonationAmountSelector onAmountSelect={handleAmountSelect} />
         ) : (
@@ -109,7 +122,7 @@ const DonationSection = () => {
           className="text-center text-lg mt-8 text-golden"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
         >
           Your contribution directly supports our mission to empower developers through live projects and certifications.
         </motion.p>
