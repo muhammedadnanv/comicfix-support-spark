@@ -58,6 +58,21 @@ const DonationSection = () => {
         >
           Every contribution, no matter the size, helps us empower developers and shape the future of technology.
         </motion.p>
+
+        <motion.div
+          className="bg-white p-6 rounded-lg shadow-md mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <h3 className="text-2xl font-semibold mb-4">Why Should You Donate?</h3>
+          <ul className="list-disc pl-6 space-y-2">
+            <li><strong>Make a Difference:</strong> Your donation directly impacts the lives of aspiring developers by providing them with real-world experiences and certifications that they might not otherwise have access to.</li>
+            <li><strong>Contribute to the Tech Industry's Future:</strong> By donating, you're helping to cultivate a new generation of skilled developers who will drive innovation and growth in the tech industry.</li>
+            <li><strong>Support Equal Opportunity:</strong> You're promoting equal access to education and career opportunities, helping to create a more diverse and inclusive industry.</li>
+          </ul>
+        </motion.div>
+
         {!showForm ? (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
             {donationOptions.map((amount, index) => (
