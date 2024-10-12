@@ -33,14 +33,14 @@ const DonationSection = () => {
     e.preventDefault();
     // UPI payment logic
     const upiId = "comicfix@upi"; // Replace with your actual UPI ID
-    const paymentUrl = `upi://pay?pa=${upiId}&pn=ComicFix%20India&am=${selectedAmount}&cu=INR&tn=Donation%20to%20ComicFix%20India&tr=${encodeURIComponent(JSON.stringify(donorInfo))}`;
+    const paymentUrl = `upi://pay?pa=${upiId}&pn=ComicFix%20Kerala&am=${selectedAmount}&cu=INR&tn=Donation%20to%20ComicFix%20Kerala&tr=${encodeURIComponent(JSON.stringify(donorInfo))}`;
     
     // Open the UPI payment URL
     window.location.href = paymentUrl;
   };
 
   return (
-    <section className="py-16 px-4 md:px-8 bg-orange-50 text-orange-800">
+    <section className="py-16 px-4 md:px-8 bg-green-50 text-green-800">
       <div className="max-w-4xl mx-auto">
         <motion.h2 
           className="text-3xl font-bold mb-8 text-center"
@@ -48,7 +48,7 @@ const DonationSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          Make a Difference Today in India
+          Make a Difference Today in Kerala
         </motion.h2>
         {!showForm ? (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
@@ -60,7 +60,7 @@ const DonationSection = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Button 
-                  className="w-full bg-orange-500 text-white hover:bg-orange-600"
+                  className="w-full bg-green-500 text-white hover:bg-green-600"
                   onClick={() => handleAmountSelect(amount)}
                 >
                   ₹{amount.toLocaleString('en-IN')}
@@ -83,7 +83,7 @@ const DonationSection = () => {
               value={donorInfo.name}
               onChange={handleInputChange}
               required
-              className="w-full p-2 border border-orange-300 rounded"
+              className="w-full p-2 border border-green-300 rounded"
             />
             <Input
               type="tel"
@@ -92,19 +92,19 @@ const DonationSection = () => {
               value={donorInfo.phone}
               onChange={handleInputChange}
               required
-              className="w-full p-2 border border-orange-300 rounded"
+              className="w-full p-2 border border-green-300 rounded"
             />
             <Textarea
               name="reason"
-              placeholder="Why do you support us?"
+              placeholder="Why do you support ComicFix Kerala?"
               value={donorInfo.reason}
               onChange={handleInputChange}
               required
-              className="w-full p-2 border border-orange-300 rounded"
+              className="w-full p-2 border border-green-300 rounded"
             />
             <Button 
               type="submit"
-              className="w-full bg-orange-500 text-white hover:bg-orange-600"
+              className="w-full bg-green-500 text-white hover:bg-green-600"
             >
               Donate ₹{selectedAmount.toLocaleString('en-IN')}
             </Button>
@@ -116,7 +116,7 @@ const DonationSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          Your contribution directly supports our mission to empower developers through live projects and certifications in India.
+          Your contribution directly supports our mission to empower developers through live projects and certifications in Kerala.
         </motion.p>
       </div>
     </section>
