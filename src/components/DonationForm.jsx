@@ -1,82 +1,119 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-const DonationForm = ({ onClose }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    address: '',
-    phoneNumber: '',
-    whatsappNumber: '',
-    linkedin: '',
-    screenshot: null
-  });
-
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: files ? files[0] : value
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const message = `New Donation:
-Name: ${formData.name}
-Address: ${formData.address}
-Phone: ${formData.phoneNumber}
-WhatsApp: ${formData.whatsappNumber}
-LinkedIn: ${formData.linkedin}`;
-
-    const whatsappUrl = `https://wa.me/919656778508?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
-    onClose();
-  };
-
+const DonationForm = ({ selectedAmount, donorInfo, paymentMethod, onInputChange, onPaymentMethodChange, onSubmit }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 50 }}
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
-    >
-      <div className="bg-black border border-golden p-6 rounded-lg max-w-md w-full">
-        <h2 className="text-2xl font-bold mb-4 text-golden">Donation Details</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <Label htmlFor="name" className="text-golden">Name</Label>
-            <Input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required className="bg-black text-golden border-golden" />
+    <form onSubmit={onSubmit} className="space-y-4">
+      <Input
+        type="text"
+        name="name"
+        placeholder="Your Name"
+        value={donorInfo.name}
+        onChange={onInputChange}
+        required
+        className="w-full p-2 border border-golden rounded bg-gray-800 text-white"
+      />
+      <Input
+        type="tel"
+        name="phone"
+        placeholder="Your Phone Number"
+        value={donorInfo.phone}
+        onChange={onInputChange}
+        required
+        className="w-full p-2 border border-golden rounded bg-gray-800 text-white"
+      />
+      <Textarea
+        name="reason"
+        placeholder="Why are you contributing to ComicFix?"
+        value={donorInfo.reason}
+        onChange={onInputChange}
+        required
+        className="w-full p-2 border border-golden rounded bg-gray-800 text-white"
+      />
+      <Select onValueChange={onPaymentMethodChange}>
+        <SelectTrigger className="w-full bg-gray-800 text-white border-golden">
+          <SelectValue placeholder="Select payment method" />
+        </SelectTrigger>
+        <SelectContent className="bg-gray-800 text-white">
+          <SelectItem value="upi">UPI</SelectItem>
+          <SelectItem value="debit">Debit Card</SelectItem>
+          <SelectItem value="bank">Bank Transfer (IFSC)</SelectItem>
+        </SelectContent>
+      </Select>
+      {paymentMethod === 'debit' && (
+        <>
+          <Input
+            type="text"
+            name="cardNumber"
+            placeholder="Card Number"
+            value={donorInfo.cardNumber}
+            onChange={onInputChange}
+            required
+            className="w-full p-2 border border-golden rounded bg-gray-800 text-white"
+          />
+          <div className="flex space-x-2">
+            <Input
+              type="text"
+              name="expiryDate"
+              placeholder="MM/YY"
+              value={donorInfo.expiryDate}
+              onChange={onInputChange}
+              required
+              className="w-1/2 p-2 border border-golden rounded bg-gray-800 text-white"
+            />
+            <Input
+              type="text"
+              name="cvv"
+              placeholder="CVV"
+              value={donorInfo.cvv}
+              onChange={onInputChange}
+              required
+              className="w-1/2 p-2 border border-golden rounded bg-gray-800 text-white"
+            />
           </div>
-          <div>
-            <Label htmlFor="address" className="text-golden">Address</Label>
-            <Input type="text" id="address" name="address" value={formData.address} onChange={handleChange} required className="bg-black text-golden border-golden" />
-          </div>
-          <div>
-            <Label htmlFor="phoneNumber" className="text-golden">Phone Number</Label>
-            <Input type="tel" id="phoneNumber" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required className="bg-black text-golden border-golden" />
-          </div>
-          <div>
-            <Label htmlFor="whatsappNumber" className="text-golden">WhatsApp Number</Label>
-            <Input type="tel" id="whatsappNumber" name="whatsappNumber" value={formData.whatsappNumber} onChange={handleChange} required className="bg-black text-golden border-golden" />
-          </div>
-          <div>
-            <Label htmlFor="linkedin" className="text-golden">LinkedIn (optional)</Label>
-            <Input type="url" id="linkedin" name="linkedin" value={formData.linkedin} onChange={handleChange} className="bg-black text-golden border-golden" />
-          </div>
-          <div>
-            <Label htmlFor="screenshot" className="text-golden">Upload Donation Screenshot</Label>
-            <Input type="file" id="screenshot" name="screenshot" onChange={handleChange} required className="bg-black text-golden border-golden" accept="image/*" />
-          </div>
-          <div className="flex justify-end space-x-4">
-            <Button type="button" onClick={onClose} className="bg-gray-600 hover:bg-gray-700 text-white">Cancel</Button>
-            <Button type="submit" className="bg-golden hover:bg-yellow-600 text-black">Submit</Button>
-          </div>
-        </form>
-      </div>
-    </motion.div>
+        </>
+      )}
+      {paymentMethod === 'bank' && (
+        <>
+          <Input
+            type="text"
+            name="bankName"
+            placeholder="Bank Name"
+            value={donorInfo.bankName}
+            onChange={onInputChange}
+            required
+            className="w-full p-2 border border-golden rounded bg-gray-800 text-white"
+          />
+          <Input
+            type="text"
+            name="accountNumber"
+            placeholder="Account Number"
+            value={donorInfo.accountNumber}
+            onChange={onInputChange}
+            required
+            className="w-full p-2 border border-golden rounded bg-gray-800 text-white"
+          />
+          <Input
+            type="text"
+            name="ifscCode"
+            placeholder="IFSC Code"
+            value={donorInfo.ifscCode}
+            onChange={onInputChange}
+            required
+            className="w-full p-2 border border-golden rounded bg-gray-800 text-white"
+          />
+        </>
+      )}
+      <Button 
+        type="submit"
+        className="w-full bg-golden text-black hover:bg-yellow-600"
+      >
+        Contribute ₹{selectedAmount.toLocaleString('en-IN')}
+      </Button>
+    </form>
   );
 };
 
