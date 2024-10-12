@@ -59,6 +59,29 @@ const DonationSection = () => {
     }
   };
 
+  const impactSections = [
+    {
+      title: "Empowering Future Innovators",
+      content: "Your donation directly supports aspiring developers, providing them with the resources and mentorship needed to become the next generation of tech innovators."
+    },
+    {
+      title: "Bridging the Digital Divide",
+      content: "By contributing to ComicFix, you're helping to provide equal opportunities in tech education, regardless of geographical or socioeconomic barriers."
+    },
+    {
+      title: "Fostering a Global Tech Community",
+      content: "Your support helps create a diverse, inclusive global network of developers, promoting collaboration and knowledge sharing across borders."
+    },
+    {
+      title: "Driving Technological Advancements",
+      content: "Your donation fuels projects that push the boundaries of technology, potentially leading to breakthroughs that benefit society as a whole."
+    },
+    {
+      title: "Sustainable Skill Development",
+      content: "Your contribution ensures continuous learning opportunities, helping developers stay current with rapidly evolving technologies and industry demands."
+    }
+  ];
+
   return (
     <section className="py-16 px-4 md:px-8 bg-black text-white">
       <div className="max-w-4xl mx-auto">
@@ -79,31 +102,18 @@ const DonationSection = () => {
           Every contribution, no matter the size, helps us empower developers and shape the future of technology.
         </motion.p>
 
-        <motion.div
-          className="bg-gray-900 p-6 rounded-lg shadow-md mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <h3 className="text-2xl font-semibold mb-4 text-golden">Addressing Global Skills Gaps</h3>
-          <ul className="list-disc pl-6 space-y-2">
-            <li><strong className="text-golden">Tackling the Tech Talent Shortage:</strong> By donating to the development of fresh talent, you're directly helping to alleviate the tech industry's talent gap, which has global implications for innovation and economic growth.</li>
-            <li><strong className="text-golden">Promoting Digital Literacy:</strong> In supporting ComicFix, you're advancing digital literacy and technical education, which are critical in today's rapidly evolving digital landscape.</li>
-          </ul>
-        </motion.div>
-
-        <motion.div
-          className="bg-gray-900 p-6 rounded-lg shadow-md mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          <h3 className="text-2xl font-semibold mb-4 text-golden">Fostering Career Development</h3>
-          <ul className="list-disc pl-6 space-y-2">
-            <li><strong className="text-golden">Supporting Skills Development:</strong> Your donation allows participants to build essential technical and professional skills, enhancing their career prospects. This can lead to better job opportunities and long-term economic benefits for individuals and their families.</li>
-            <li><strong className="text-golden">Encouraging Self-Sufficiency:</strong> With the skills they gain through ComicFix projects, participants can become self-sufficient, finding employment, launching startups, or even becoming contributors to future tech communities.</li>
-          </ul>
-        </motion.div>
+        {impactSections.map((section, index) => (
+          <motion.div
+            key={index}
+            className="bg-gray-900 p-6 rounded-lg shadow-md mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 + index * 0.2 }}
+          >
+            <h3 className="text-2xl font-semibold mb-4 text-golden">{section.title}</h3>
+            <p className="text-white">{section.content}</p>
+          </motion.div>
+        ))}
 
         {!showForm ? (
           <DonationAmountSelector onAmountSelect={handleAmountSelect} />
