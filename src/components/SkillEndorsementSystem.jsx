@@ -5,17 +5,20 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "sonner";
 
 const SkillEndorsementSystem = () => {
   const [skills, setSkills] = useState([]);
   const [newSkill, setNewSkill] = useState('');
   const [mentorBadges, setMentorBadges] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Simulating API call to fetch user's skills and mentor badges
     const fetchUserData = async () => {
       try {
+        setLoading(true);
         // In a real app, this would be an API call
         const response = await new Promise(resolve => setTimeout(() => resolve({
           data: {
@@ -29,8 +32,11 @@ const SkillEndorsementSystem = () => {
         }), 1000));
         setSkills(response.data.skills);
         setMentorBadges(response.data.mentorBadges);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching user data:', error);
+        setError('Failed to load user data. Please try again later.');
+        setLoading(false);
         toast.error('Failed to load user data');
       }
     };
@@ -54,6 +60,14 @@ const SkillEndorsementSystem = () => {
     ));
     toast.success(`You've endorsed ${skillName}!`);
   };
+
+  if (loading) {
+    return <div className="p-4">Loading skill endorsement data...</div>;
+  }
+
+  if (error) {
+    return <div className="p-4 text-red-500">{error}</div>;
+  }
 
   return (
     <motion.div

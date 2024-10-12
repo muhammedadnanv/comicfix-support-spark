@@ -20,7 +20,7 @@ const Index = () => {
       <GamificationSystem />
       <SkillEndorsementSystem />
       <div className="py-16 px-4 md:px-8 bg-gray-900">
-        <h2 className="text-3xl font-bold mb-8 text-center text-white">Build Your Future</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center text-golden">Build Your Future</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <FeedbackForm />
           <PortfolioBuilder />

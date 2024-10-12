@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Skeleton } from "@/components/ui/skeleton";
+import { toast } from "sonner";
 
 const GamificationSystem = () => {
   const [contributors, setContributors] = useState([]);
@@ -12,6 +14,8 @@ const GamificationSystem = () => {
   const [nextLevel, setNextLevel] = useState("Code Master");
   const [pointsToNextLevel, setPointsToNextLevel] = useState(10000);
   const [reputation, setReputation] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const badges = [
     { name: "First Contribution", icon: "🌟" },
@@ -20,32 +24,42 @@ const GamificationSystem = () => {
   ];
 
   useEffect(() => {
-    const fetchContributors = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get('https://api.github.com/orgs/ComicFix-com/members');
-        const contributorsData = response.data.map((contributor, index) => ({
+        setLoading(true);
+        const [contributorsResponse, reputationResponse] = await Promise.all([
+          axios.get('https://api.github.com/orgs/ComicFix-com/members'),
+          new Promise(resolve => setTimeout(() => resolve({ data: { reputation: 75 } }), 1000))
+        ]);
+
+        const contributorsData = contributorsResponse.data.map((contributor, index) => ({
           rank: index + 1,
           name: contributor.login,
           points: Math.floor(Math.random() * 10000) + 1000,
           avatar: contributor.avatar_url,
         }));
+
         setContributors(contributorsData);
+        setReputation(reputationResponse.data.reputation);
+        setLoading(false);
       } catch (error) {
-        console.error('Error fetching contributors:', error);
+        console.error('Error fetching data:', error);
+        setError('Failed to load data. Please try again later.');
+        setLoading(false);
+        toast.error('Failed to load gamification data');
       }
     };
 
-    fetchContributors();
-
-    // Simulating API call to fetch user's reputation
-    const fetchReputation = async () => {
-      // In a real app, this would be an API call
-      const response = await new Promise(resolve => setTimeout(() => resolve({ data: { reputation: 75 } }), 1000));
-      setReputation(response.data.reputation);
-    };
-
-    fetchReputation();
+    fetchData();
   }, []);
+
+  if (loading) {
+    return <div className="p-4">Loading gamification data...</div>;
+  }
+
+  if (error) {
+    return <div className="p-4 text-red-500">{error}</div>;
+  }
 
   return (
     <section className="py-16 px-4 md:px-8 bg-black text-white">
