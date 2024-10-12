@@ -31,16 +31,13 @@ const DonationSection = () => {
 
   const handleDonate = (e) => {
     e.preventDefault();
-    // UPI payment logic
     const upiId = "comicfix@upi"; // Replace with your actual UPI ID
     const paymentUrl = `upi://pay?pa=${upiId}&pn=ComicFix&am=${selectedAmount}&cu=INR&tn=Donation%20to%20ComicFix&tr=${encodeURIComponent(JSON.stringify(donorInfo))}`;
-    
-    // Open the UPI payment URL
     window.location.href = paymentUrl;
   };
 
   return (
-    <section className="py-16 px-4 md:px-8 bg-green-50 text-green-800">
+    <section className="py-16 px-4 md:px-8 bg-black text-white">
       <div className="max-w-4xl mx-auto">
         <motion.h2 
           className="text-3xl font-bold mb-8 text-center"
@@ -60,7 +57,7 @@ const DonationSection = () => {
         </motion.p>
 
         <motion.div
-          className="bg-white p-6 rounded-lg shadow-md mb-8"
+          className="bg-gray-900 p-6 rounded-lg shadow-md mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -71,6 +68,7 @@ const DonationSection = () => {
             <li><strong>Contribute to the Tech Industry's Future:</strong> By donating, you're helping to cultivate a new generation of skilled developers who will drive innovation and growth in the tech industry.</li>
             <li><strong>Support Equal Opportunity:</strong> You're promoting equal access to education and career opportunities, helping to create a more diverse and inclusive industry.</li>
           </ul>
+          <p className="mt-4">In short, your donation to ComicFix is more than just a financial contribution; it's an investment in the future of tech and social progress.</p>
         </motion.div>
 
         {!showForm ? (
@@ -83,7 +81,7 @@ const DonationSection = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Button 
-                  className="w-full bg-green-500 text-white hover:bg-green-600"
+                  className="w-full bg-white text-black hover:bg-gray-200"
                   onClick={() => handleAmountSelect(amount)}
                 >
                   ₹{amount.toLocaleString('en-IN')}
@@ -106,7 +104,7 @@ const DonationSection = () => {
               value={donorInfo.name}
               onChange={handleInputChange}
               required
-              className="w-full p-2 border border-green-300 rounded"
+              className="w-full p-2 border border-gray-300 rounded bg-gray-800 text-white"
             />
             <Input
               type="tel"
@@ -115,7 +113,7 @@ const DonationSection = () => {
               value={donorInfo.phone}
               onChange={handleInputChange}
               required
-              className="w-full p-2 border border-green-300 rounded"
+              className="w-full p-2 border border-gray-300 rounded bg-gray-800 text-white"
             />
             <Textarea
               name="reason"
@@ -123,11 +121,11 @@ const DonationSection = () => {
               value={donorInfo.reason}
               onChange={handleInputChange}
               required
-              className="w-full p-2 border border-green-300 rounded"
+              className="w-full p-2 border border-gray-300 rounded bg-gray-800 text-white"
             />
             <Button 
               type="submit"
-              className="w-full bg-green-500 text-white hover:bg-green-600"
+              className="w-full bg-white text-black hover:bg-gray-200"
             >
               Contribute ₹{selectedAmount.toLocaleString('en-IN')}
             </Button>
