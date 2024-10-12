@@ -6,7 +6,7 @@ import '../styles/premium.css';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-50 to-white">
       <HeroSection />
       <DonationSection />
       <Footer />

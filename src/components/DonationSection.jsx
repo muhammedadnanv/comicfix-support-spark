@@ -13,10 +13,10 @@ const DonationSection = () => {
   const donationAmounts = [10, 20, 50, 100, 500, 1000, 5000, 10000, 100000, 1000000, 10000000];
 
   return (
-    <section className="py-16 px-4 md:px-8 bg-black">
+    <section className="py-10 md:py-16 px-4 md:px-8 bg-black">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold mb-8 text-center text-golden">Make a Difference Today</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+        <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center text-golden">Make a Difference Today</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 mb-6 md:mb-8">
           {donationAmounts.map((amount, index) => (
             <motion.div 
               key={amount}
@@ -26,7 +26,7 @@ const DonationSection = () => {
             >
               <Button 
                 onClick={() => handleDonate(amount)} 
-                className="w-full bg-golden hover:bg-yellow-400 text-black"
+                className="w-full bg-golden hover:bg-yellow-400 text-black text-sm md:text-base"
               >
                 Donate ₹{amount.toLocaleString()}
               </Button>
@@ -39,14 +39,14 @@ const DonationSection = () => {
           >
             <Button 
               onClick={() => handleDonate()} 
-              className="w-full bg-golden hover:bg-yellow-400 text-black"
+              className="w-full bg-golden hover:bg-yellow-400 text-black text-sm md:text-base"
             >
               Custom Amount
             </Button>
           </motion.div>
         </div>
         <motion.p 
-          className="text-center text-golden"
+          className="text-center text-golden text-sm md:text-base"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: (donationAmounts.length + 1) * 0.1 }}
