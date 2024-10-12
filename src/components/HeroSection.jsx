@@ -19,7 +19,7 @@ const HeroSection = () => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        Your donation helps us provide live projects, certifications, and now you can even sponsor individual developers!
+        Your donation helps us provide live projects, certifications, and now you can even sponsor individual projects!
       </motion.p>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
