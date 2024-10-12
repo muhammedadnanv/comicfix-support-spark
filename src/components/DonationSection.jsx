@@ -79,6 +79,19 @@ const DonationSection = () => {
           Every contribution, no matter the size, helps us empower developers and shape the future of technology.
         </motion.p>
 
+        <motion.div
+          className="bg-gray-900 p-6 rounded-lg shadow-md mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <h3 className="text-2xl font-semibold mb-4 text-golden">Addressing Global Skills Gaps</h3>
+          <ul className="list-disc pl-6 space-y-2">
+            <li><strong className="text-golden">Tackling the Tech Talent Shortage:</strong> By donating to the development of fresh talent, you're directly helping to alleviate the tech industry's talent gap, which has global implications for innovation and economic growth.</li>
+            <li><strong className="text-golden">Promoting Digital Literacy:</strong> In supporting ComicFix, you're advancing digital literacy and technical education, which are critical in today's rapidly evolving digital landscape.</li>
+          </ul>
+        </motion.div>
+
         {!showForm ? (
           <DonationAmountSelector onAmountSelect={handleAmountSelect} />
         ) : (
