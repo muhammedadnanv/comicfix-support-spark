@@ -20,7 +20,7 @@ const HeroSection = () => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        At ComicFix, supporters play a crucial role in nurturing the next generation of developers, helping them gain valuable skills and experience that will benefit their careers and the broader tech community.
+        At ComicFix, your contribution plays a crucial role in nurturing the next generation of developers, helping them gain valuable skills and experience that will benefit their careers and the broader tech community.
       </motion.p>
       <motion.p 
         className="text-base md:text-lg lg:text-xl mb-6 md:mb-8"
@@ -28,7 +28,7 @@ const HeroSection = () => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
       >
-        Your support is not just an investment in individual projects, but in the broader future of the global tech community.
+        Your donation makes a direct impact on individual projects and contributes to the broader future of the global tech community.
       </motion.p>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -36,7 +36,7 @@ const HeroSection = () => (
         transition={{ duration: 0.8, delay: 0.6 }}
       >
         <Button className="bg-green-500 text-white hover:bg-green-600 text-base md:text-lg px-6 md:px-8 py-2 md:py-3 rounded-full">
-          Support ComicFix <ArrowRight className="ml-2 h-5 w-5" />
+          Contribute to ComicFix <ArrowRight className="ml-2 h-5 w-5" />
         </Button>
       </motion.div>
     </div>
