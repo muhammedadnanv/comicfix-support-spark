@@ -12,23 +12,31 @@ const HeroSection = () => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        Support ComicFix's Mission in Kerala
+        ComicFix - Where Developers Thrive, Projects Inspire, and Certifications Validate
       </motion.h1>
       <motion.p 
-        className="text-base md:text-lg lg:text-2xl mb-6 md:mb-8"
+        className="text-base md:text-lg lg:text-xl mb-6 md:mb-8"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        Your donation helps us provide live projects, certifications, and now you can even sponsor individual projects in Kerala!
+        At ComicFix Kerala, supporters play a crucial role in nurturing the next generation of developers, helping them gain valuable skills and experience that will benefit their careers and the broader tech community.
       </motion.p>
-      <motion.div
+      <motion.p 
+        className="text-base md:text-lg lg:text-xl mb-6 md:mb-8"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
       >
+        Your support is not just an investment in individual projects, but in the broader future of the global tech community, starting right here in Kerala.
+      </motion.p>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+      >
         <Button className="bg-green-500 text-white hover:bg-green-600 text-base md:text-lg px-6 md:px-8 py-2 md:py-3 rounded-full">
-          Donate Now <ArrowRight className="ml-2 h-5 w-5" />
+          Support ComicFix Kerala <ArrowRight className="ml-2 h-5 w-5" />
         </Button>
       </motion.div>
     </div>
