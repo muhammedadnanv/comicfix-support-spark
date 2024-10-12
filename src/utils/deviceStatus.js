@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const useDeviceStatus = () => {
   const [isLowBattery, setIsLowBattery] = React.useState(false);
   const [isLowNetwork, setIsLowNetwork] = React.useState(false);
