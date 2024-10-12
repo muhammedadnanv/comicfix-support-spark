@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const DeveloperSponsorshipProgram = () => {
   const [selectedDeveloper, setSelectedDeveloper] = useState('');
@@ -45,16 +51,17 @@ const DeveloperSponsorshipProgram = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <Select
-            value={selectedDeveloper}
-            onValueChange={setSelectedDeveloper}
-            placeholder="Select a developer to sponsor"
-          >
-            {developers.map((dev) => (
-              <Select.Option key={dev.id} value={dev.name}>
-                {dev.name} - {dev.project}
-              </Select.Option>
-            ))}
+          <Select onValueChange={setSelectedDeveloper}>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select a developer to sponsor" />
+            </SelectTrigger>
+            <SelectContent>
+              {developers.map((dev) => (
+                <SelectItem key={dev.id} value={dev.name}>
+                  {dev.name} - {dev.project}
+                </SelectItem>
+              ))}
+            </SelectContent>
           </Select>
           <Input
             type="number"
