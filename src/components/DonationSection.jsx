@@ -37,33 +37,49 @@ const DonationSection = () => {
 
   const handleDonate = async (e) => {
     e.preventDefault();
-    if (paymentMethod === 'upi') {
-      // Updated UPI link for payment
-      const upiLink = `upi://pay?pa=adnanmuhammad4393@okicici&pn=Adnan+Muhammad&am=${selectedAmount}&tn=Comicfix+Ollo+Challenge`;
-      window.location.href = upiLink;
-    } else {
-      try {
-        await processPayment(selectedAmount, paymentMethod, donorInfo);
-        alert('Thank you for your donation!');
-        // Reset form
-        setSelectedAmount(null);
-        setShowForm(false);
-        setPaymentMethod('upi');
-        setDonorInfo({
-          name: '',
-          phone: '',
-          reason: '',
-          upiId: '',
-          cardNumber: '',
-          expiryDate: '',
-          cvv: '',
-          bankName: '',
-          accountNumber: '',
-          ifscCode: ''
-        });
-      } catch (error) {
-        alert('There was an error processing your donation. Please try again.');
+    try {
+      switch (paymentMethod) {
+        case 'upi':
+          const upiLink = `upi://pay?pa=adnanmuhammad4393@okicici&pn=Adnan+Muhammad&am=${selectedAmount}&tn=Comicfix+Ollo+Challenge`;
+          window.location.href = upiLink;
+          break;
+        case 'debit':
+          await processPayment(selectedAmount, 'debit', {
+            cardNumber: donorInfo.cardNumber,
+            expiryDate: donorInfo.expiryDate,
+            cvv: donorInfo.cvv
+          });
+          break;
+        case 'bank':
+          await processPayment(selectedAmount, 'bank', {
+            bankName: donorInfo.bankName,
+            accountNumber: donorInfo.accountNumber,
+            ifscCode: donorInfo.ifscCode
+          });
+          break;
+        default:
+          throw new Error('Invalid payment method');
       }
+      
+      alert('Thank you for your donation!');
+      // Reset form
+      setSelectedAmount(null);
+      setShowForm(false);
+      setPaymentMethod('upi');
+      setDonorInfo({
+        name: '',
+        phone: '',
+        reason: '',
+        upiId: '',
+        cardNumber: '',
+        expiryDate: '',
+        cvv: '',
+        bankName: '',
+        accountNumber: '',
+        ifscCode: ''
+      });
+    } catch (error) {
+      alert(`There was an error processing your donation: ${error.message}. Please try again.`);
     }
   };
 
