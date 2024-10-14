@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import DonationAmountSelector from './DonationAmountSelector';
 import DonationForm from './DonationForm';
 import { processPayment } from '../utils/paymentUtils';
+import { toast } from "sonner";
 
 const DonationSection = () => {
   const [selectedAmount, setSelectedAmount] = useState(null);
@@ -61,7 +62,10 @@ const DonationSection = () => {
           throw new Error('Invalid payment method');
       }
       
-      alert('Thank you for your donation!');
+      toast.success('Thank you for your donation! You have supported the ComicFix community.', {
+        duration: 5000,
+        position: 'top-center',
+      });
       // Reset form
       setSelectedAmount(null);
       setShowForm(false);
@@ -79,7 +83,10 @@ const DonationSection = () => {
         ifscCode: ''
       });
     } catch (error) {
-      alert(`There was an error processing your donation: ${error.message}. Please try again.`);
+      toast.error(`There was an error processing your donation: ${error.message}. Please try again.`, {
+        duration: 5000,
+        position: 'top-center',
+      });
     }
   };
 
